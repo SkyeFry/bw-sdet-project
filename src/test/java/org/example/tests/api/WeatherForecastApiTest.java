@@ -1,7 +1,6 @@
 package org.example.tests.api;
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.example.base.BaseApiTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -20,7 +19,7 @@ public class WeatherForecastApiTest extends BaseApiTest {
 
     @Test
     public void getAllWeatherForecasts() {
-        Response response = given()
+        given()
                 .when()
                 .get("/weatherforecast")
                 .then()

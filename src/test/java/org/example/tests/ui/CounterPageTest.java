@@ -15,7 +15,6 @@ public class CounterPageTest extends BaseTest {
 
     private final CounterPage counterPage = new CounterPage(basePage.getPage());
 
-
     @BeforeEach
     public void counterPageSetUp() {
         BasePage.navigateToUrlAndWaitForBlazor(CounterPage.COUNTER_PAGE_URL);

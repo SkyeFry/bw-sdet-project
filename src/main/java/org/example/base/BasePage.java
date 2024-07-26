@@ -86,13 +86,4 @@ public class BasePage {
     public static void navigateToUrlAndWaitForBlazor() {
         navigateToUrlAndWaitForBlazor("http://localhost:8080/");
     }
-
-    public static Page navigateToNewTab(String url) {
-        CompletableFuture<Page> newPageFuture = new CompletableFuture<>();
-        context.onPage(newPage -> {
-            newPage.navigate(url, new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
-            newPageFuture.complete(newPage);
-        });
-        return newPageFuture.join();
-    }
 }
