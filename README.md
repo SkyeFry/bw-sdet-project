@@ -19,10 +19,10 @@ Note: You will need to have Maven and Java JDK installed on your machine and add
 
 ```bash
 # Clone the repository
-git clone https://github.com/SkyeFry/SkyeFrySDETProject.git
+git clone https://github.com/SkyeFry/bw-sdet-project.git
 
 # Navigate to the project directory
-cd your-repository
+cd bw-sdet-project ## replace with the path to the project directory
 
 # Install dependencies
 mvn install
