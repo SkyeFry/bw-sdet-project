@@ -3,15 +3,19 @@ package org.example.pages;
 import com.microsoft.playwright.Page;
 
 public class HomePage {
-    private static final String HOME_PAGE_URL = "http://localhost:8080/";
     private final Page page;
+    public static final String HOME_PAGE_URL = "http://localhost:8080/";
+    public static final String HOME_PAGE_TITLE_TEXT = "Home";
+    public static final String HOME_PAGE_HEADING_TEXT = "Hello, world!";
+    private static final String HOME_PAGE_HEADING_SELECTOR = "h1";
+
 
     public HomePage(Page page) {
         this.page = page;
     }
 
     public String getHomePageUrl() {
-        return HOME_PAGE_URL;
+        return page.url();
     }
 
     public String getHomePageTitle() {
@@ -19,6 +23,6 @@ public class HomePage {
     }
 
     public String getHomePageHeading() {
-        return page.textContent("h1");
+        return page.textContent(HOME_PAGE_HEADING_SELECTOR);
     }
 }

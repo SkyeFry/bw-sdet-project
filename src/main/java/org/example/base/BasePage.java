@@ -4,10 +4,12 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitUntilState;
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.util.concurrent.CompletableFuture;
+
 public class BasePage {
     private Playwright playwright;
     private Browser browser;
-    private BrowserContext context;
+    private static BrowserContext context;
     private static Page page;
 
     public BasePage() {
@@ -79,5 +81,18 @@ public class BasePage {
             System.err.println("An unexpected error occurred: " + e.getMessage());
             throw e;
         }
+    }
+
+    public static void navigateToUrlAndWaitForBlazor() {
+        navigateToUrlAndWaitForBlazor("http://localhost:8080/");
+    }
+
+    public static Page navigateToNewTab(String url) {
+        CompletableFuture<Page> newPageFuture = new CompletableFuture<>();
+        context.onPage(newPage -> {
+            newPage.navigate(url, new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
+            newPageFuture.complete(newPage);
+        });
+        return newPageFuture.join();
     }
 }

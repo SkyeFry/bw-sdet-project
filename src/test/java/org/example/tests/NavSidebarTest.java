@@ -21,25 +21,25 @@ public class NavSidebarTest extends BaseTest {
     }
 
     @Test
-    public void clickMenuHeading_IsSuccessful() {
+    public void clickMenuHeading_OpensCorrectUrl() {
         navSidebarPage.clickSidebarHeading();
         assertEquals(HOME_PAGE_URL, navSidebarPage.getPageUrl());
     }
 
     @Test
-    public void clickHomeSidebarLink_IsSuccessful() {
+    public void clickHomeSidebarLink_OpensCorrectUrl() {
         navSidebarPage.clickHomeSidebarLink();
         assertEquals(HOME_PAGE_URL, navSidebarPage.getPageUrl());
     }
 
     @Test
-    public void clickCounterSidebarLink_IsSuccessful() {
+    public void clickCounterSidebarLink_OpensCorrectUrl() {
         navSidebarPage.clickCounterSidebarLink();
         assertEquals(COUNTER_PAGE_URL, navSidebarPage.getPageUrl());
     }
 
     @Test
-    public void clickWeatherSidebarLink_IsSuccessful() {
+    public void clickWeatherSidebarLink_OpensCorrectUrl() {
         navSidebarPage.clickWeatherSidebarLink();
         assertEquals(WEATHER_PAGE_URL, navSidebarPage.getPageUrl());
     }
