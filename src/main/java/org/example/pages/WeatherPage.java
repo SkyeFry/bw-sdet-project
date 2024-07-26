@@ -38,7 +38,6 @@ public class WeatherPage {
     }
 
     public void clickChooseFileButtonAndUploadFile(String filePath) {
-        // Clicking the button leaves the file dialog open if not running in headless mode - does not impact tests
         page.locator(CHOOSE_FILE_BUTTON_SELECTOR).click();
         page.setInputFiles(CHOOSE_FILE_BUTTON_SELECTOR, Paths.get(filePath));
     }

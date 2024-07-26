@@ -1,4 +1,4 @@
-package org.example.tests;
+package org.example.tests.ui;
 
 import com.microsoft.playwright.Page;
 import org.example.base.BasePage;

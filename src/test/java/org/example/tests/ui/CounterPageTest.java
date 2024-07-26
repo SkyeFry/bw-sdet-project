@@ -1,4 +1,4 @@
-package org.example.tests;
+package org.example.tests.ui;
 
 import org.example.base.BasePage;
 import org.example.base.BaseTest;
