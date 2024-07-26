@@ -1,5 +1,6 @@
 package org.example.tests;
 
+import org.example.base.BasePage;
 import org.example.base.BaseTest;
 import org.example.pages.CounterPage;
 import org.example.pages.NavSidebarPage;
@@ -12,16 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CounterPageTest extends BaseTest {
 
-    private CounterPage counterPage;
+    private final CounterPage counterPage = new CounterPage(basePage.getPage());
     private static final String COUNTER_PAGE_URL = "http://localhost:8080/counter";
     private static final String COUNTER_PAGE_TITLE = "Counter";
     private static final String COUNTER_PAGE_HEADING = "Counter";
 
     @BeforeEach
     public void counterPageSetUp() {
-        counterPage = new CounterPage(basePage.getPage());
-        counterPage.navigateToCounterPage();
-        page.waitForFunction("() => window.Blazor !== undefined;");
+        BasePage.navigateToUrlAndWaitForBlazor(COUNTER_PAGE_URL);
     }
 
     @Test

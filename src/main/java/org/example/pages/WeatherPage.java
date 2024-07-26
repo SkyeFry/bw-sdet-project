@@ -2,7 +2,6 @@ package org.example.pages;
 
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitUntilState;
 
 import java.nio.file.Paths;
 
@@ -12,10 +11,6 @@ public class WeatherPage {
 
     public WeatherPage(Page page) {
         this.page = page;
-    }
-
-    public void navigateToWeatherPage() {
-        page.navigate(WEATHER_PAGE_URL, new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
     }
 
     public String getWeatherPageUrl() {
@@ -39,7 +34,6 @@ public class WeatherPage {
 
     public void clickChooseFileButtonAndUploadFile(String filePath) {
         page.locator("xpath=/html/body/div[1]/main/article/input").click();
-
         page.setInputFiles("xpath=/html/body/div[1]/main/article/input", Paths.get(filePath));
     }
 }

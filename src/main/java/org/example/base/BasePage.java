@@ -1,13 +1,14 @@
 package org.example.base;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.WaitUntilState;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class BasePage {
     private Playwright playwright;
     private Browser browser;
     private BrowserContext context;
-    private Page page;
+    private static Page page;
 
     public BasePage() {
         Dotenv dotenv = Dotenv.load();
@@ -42,6 +43,18 @@ public class BasePage {
         page = context.newPage();
     }
 
+    public Playwright getPlaywright() {
+        return playwright;
+    }
+
+    public Browser getBrowser() {
+        return browser;
+    }
+
+    public BrowserContext getContext() {
+        return context;
+    }
+
     public Page getPage() {
         return page;
     }
@@ -52,6 +65,19 @@ public class BasePage {
         }
         if (playwright != null) {
             playwright.close();
+        }
+    }
+
+    public static void navigateToUrlAndWaitForBlazor(String url) {
+        try {
+            page.navigate(url, new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
+            page.waitForFunction("() => window.Blazor !== undefined;");
+        } catch (PlaywrightException e) {
+            System.err.println("Navigation to URL failed: " + e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            throw e;
         }
     }
 }

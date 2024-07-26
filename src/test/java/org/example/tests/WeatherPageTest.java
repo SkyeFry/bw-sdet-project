@@ -1,5 +1,6 @@
 package org.example.tests;
 
+import org.example.base.BasePage;
 import org.example.base.BaseTest;
 import org.example.util.FileUtil;
 import org.example.util.FileSystemUtil;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeatherPageTest extends BaseTest {
 
-    private WeatherPage weatherPage;
+    private final WeatherPage weatherPage = new WeatherPage(basePage.getPage());
     private static final String DOWNLOAD_PATH = System.getProperty("user.home") + "\\Downloads";
     private static final String EXPECTED_FILE_NAME = "forecast.json";
     private static final String WEATHER_PAGE_URL = "http://localhost:8080/weather";
@@ -26,9 +27,7 @@ public class WeatherPageTest extends BaseTest {
 
     @BeforeEach
     public void weatherPageSetUp() {
-        weatherPage = new WeatherPage(basePage.getPage());
-        weatherPage.navigateToWeatherPage();
-        page.waitForFunction("() => window.Blazor !== undefined;");
+        BasePage.navigateToUrlAndWaitForBlazor(WEATHER_PAGE_URL);
         FileSystemUtil.clearDirectory(DOWNLOAD_PATH);
     }
 

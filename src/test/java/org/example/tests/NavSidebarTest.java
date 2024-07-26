@@ -1,7 +1,7 @@
 package org.example.tests;
 
+import org.example.base.BasePage;
 import org.example.base.BaseTest;
-import org.example.pages.HomePage;
 import org.example.pages.NavSidebarPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,17 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NavSidebarTest extends BaseTest {
 
-    private NavSidebarPage navSidebarPage;
+    private final NavSidebarPage navSidebarPage = new NavSidebarPage(basePage.getPage());
     private static final String HOME_PAGE_URL = "http://localhost:8080/";
     private static final String COUNTER_PAGE_URL = "http://localhost:8080/counter";
     private static final String WEATHER_PAGE_URL = "http://localhost:8080/weather";
 
     @BeforeEach
     public void sidebarTabsSetUp() {
-        navSidebarPage = new NavSidebarPage(basePage.getPage());
-        HomePage homePage = new HomePage(basePage.getPage());
-        homePage.navigateToHomePage();
-        page.waitForFunction("() => window.Blazor !== undefined;");
+        BasePage.navigateToUrlAndWaitForBlazor(HOME_PAGE_URL);
     }
 
     @Test

@@ -1,7 +1,6 @@
 package org.example.pages;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitUntilState;
 
 public class HomePage {
     private static final String HOME_PAGE_URL = "http://localhost:8080/";
@@ -9,10 +8,6 @@ public class HomePage {
 
     public HomePage(Page page) {
         this.page = page;
-    }
-
-    public void navigateToHomePage() {
-        page.navigate(HOME_PAGE_URL, new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
     }
 
     public String getHomePageUrl() {
