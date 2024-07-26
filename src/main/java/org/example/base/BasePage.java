@@ -26,7 +26,6 @@ public class BasePage {
         BrowserType browserType;
         switch (browserName.toLowerCase()) {
             case "chrome":
-            case "edge":
                 browserType = playwright.chromium();
                 break;
             case "firefox":

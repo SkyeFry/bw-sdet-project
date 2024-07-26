@@ -201,8 +201,6 @@ public class WeatherForecastApiTest extends BaseApiTest {
 
     @Test
     public void createWeatherForecast_MissingHeader() {
-        RestAssured.baseURI = "http://localhost:8081";
-
         String requestBody = "{ \"date\": \"2024-07-26\", \"temperatureC\": 20, \"summary\": \"Mild\", \"temperatureF\": 68 }";
 
         given()
@@ -215,8 +213,6 @@ public class WeatherForecastApiTest extends BaseApiTest {
 
     @Test
     public void createWeatherForecast_MissingBody() {
-        RestAssured.baseURI = "http://localhost:8081";
-
         given()
                 .header("Content-Type", "application/json")
                 .when()
