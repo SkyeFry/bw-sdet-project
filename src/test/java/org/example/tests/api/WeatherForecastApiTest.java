@@ -4,10 +4,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.base.BaseApiTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -30,9 +28,6 @@ public class WeatherForecastApiTest extends BaseApiTest {
                 .body("$", not(empty()))
                 .extract()
                 .response();
-
-        List<Map<String, Object>> forecasts = response.jsonPath().getList("$");
-        forecasts.forEach(System.out::println);
     }
 
     @Test
@@ -174,18 +169,19 @@ public class WeatherForecastApiTest extends BaseApiTest {
                 .statusCode(400);
     }
 
-//    @Test
-//    public void createWeatherForecast_EmptyTemperatureF() {
-//        String requestBody = "{ \"date\": \"2024-07-26\", \"temperatureC\": 20, \"summary\": \"Mild\", \"temperatureF\": \"\" }";
-//
-//        given()
-//                .header("Content-Type", "application/json")
-//                .body(requestBody)
-//                .when()
-//                .post("/weatherforecast")
-//                .then()
-//                .statusCode(400);
-//    }
+    @Disabled("Bug in test - temperatureF is not being validated")
+    @Test
+    public void createWeatherForecast_EmptyTemperatureF() {
+        String requestBody = "{ \"date\": \"2024-07-26\", \"temperatureC\": 20, \"summary\": \"Mild\", \"temperatureF\": \"\" }";
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(requestBody)
+                .when()
+                .post("/weatherforecast")
+                .then()
+                .statusCode(400);
+    }
 
     @Test
     public void createWeatherForecast_EmptyBody() {
@@ -229,5 +225,4 @@ public class WeatherForecastApiTest extends BaseApiTest {
                 .then()
                 .statusCode(400);
     }
-
 }
