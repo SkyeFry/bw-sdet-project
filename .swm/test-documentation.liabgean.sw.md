@@ -5,7 +5,7 @@ title: Test Documentation
 
 ---
 
-This is initialized the different types of browsers
+This is initializing the different types of browsers along with other nifty things
 
 ```java
     protected void initializeBrowser(String browserName, boolean isHeadless) {
